@@ -40,13 +40,10 @@ public class GitHubService {
     private RepositoryName convertToRepositoryInfo(GHRepository repo) {
         try {
             List<BranchInfo> branches = repo.getBranches().values().stream()
-                    .map(branch -> {
-                        return BranchInfo.builder()
-                                .name(branch.getName())
-                                .lastCommitSha(branch.getSHA1())
-                                .build();
-                    })
-
+                    .map(branch -> BranchInfo.builder()
+                            .name(branch.getName())
+                            .lastCommitSha(branch.getSHA1())
+                            .build())
                     .collect(Collectors.toList());
 
             return RepositoryName.builder()
